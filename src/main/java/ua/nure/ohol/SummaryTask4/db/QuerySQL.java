@@ -37,11 +37,11 @@ public final class QuerySQL {
 
     //customer
     public static final String SQL_GET_RESERVATION_LIST_FOR_CUSTOMER =
-            "SELECT tour_name,tour_begin_date,tour_end_date,status_name " +
-                    "FROM Tour t JOIN tour_reservation ON t.tour_id = tour_reservation.tour_id " +
-                    "JOIN reservation_list rl on tour_reservation.reservation_id = rl.reservation_id " +
-                    "JOIN tour_duration d ON t.tour_id =d.tour_duration_id " +
-                    "JOIN tour_status s ON tour_reservation.status_id = s.status_id WHERE user_id =?;";
+            "SELECT tour_name,TIMESTAMPDIFF(DAY,tour_begin_date,tour_end_date) duration,tour_reservation.status_id, price,tour_begin_date,tour_end_date\n" +
+                    "                    FROM Tour t JOIN tour_reservation ON t.tour_id = tour_reservation.tour_id\n" +
+                    "                    JOIN reservation_list rl on tour_reservation.reservation_id = rl.reservation_id\n" +
+                    "                    JOIN tour_duration d ON t.tour_id =d.tour_duration_id\n" +
+                    "                    JOIN tour_status s ON tour_reservation.status_id = s.status_id WHERE user_id =?;";
 
     public static String SQL_GET_RESERVATION_LIST =
             "SELECT * FROM Tour t JOIN tour_reservation ON t.tour_id = tour_reservation.tour_id " +

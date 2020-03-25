@@ -1,0 +1,33 @@
+body, html {
+    height: 100%;
+}
+
+.parallax {
+    /* The image used */
+    background-color: white;
+    background-image: url('../images/rice-plantation-1822444_1920.jpg');
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top:100vh;
+
+}
+
+.parallax-curtain {
+    height: 500px;
+    background-color: rgba(152, 126, 110, 0.54);
+    font-size: 36px;
+}
+
+/* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}

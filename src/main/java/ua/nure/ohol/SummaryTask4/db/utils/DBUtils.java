@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DBUtils {
@@ -234,7 +235,7 @@ public class DBUtils {
         pr.setInt(1, id);
         ResultSet rs = pr.executeQuery();
         if (rs.next()) {
-            Map<String, Entity> tourInf = new HashMap<>();
+            Map<String, Entity> tourInf = new LinkedHashMap<>();
             Tour tour = new Tour();
             Duration du = new Duration();
             Reservation res = new Reservation();
@@ -242,10 +243,11 @@ public class DBUtils {
             tour.setPrice(rs.getFloat(Fields.TOUR_PRICE));
             du.setTourBeginDate(rs.getString(Fields.BEGIN_DATE));
             du.setTourEndDate(rs.getString(Fields.END_DATE));
+            du.setDurationInDays(rs.getInt(Fields.DURATION));
             res.setStatusId(rs.getInt(Fields.STATUS_ID));
-            tourInf.put(Tour.class.getName(), tour);
-            tourInf.put(Duration.class.getName(), du);
-            tourInf.put(Reservation.class.getName(), res);
+            tourInf.put("Tour", tour);
+            tourInf.put("Duration", du);
+            tourInf.put("Reservation", res);
             return tourInf;
         }
         return null;

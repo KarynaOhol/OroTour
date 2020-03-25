@@ -19,4 +19,11 @@ public class Reservation extends Entity {
     public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation [ tourId = " + tourId +
+                ", statusId = " + statusId +
+                ", getId() = " + getId();
+    }
 }

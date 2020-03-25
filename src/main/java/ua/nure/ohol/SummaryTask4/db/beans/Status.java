@@ -5,7 +5,11 @@ public enum  Status {
 
     public static Status getStatus(Reservation res) {
         int statusId = res.getStatusId();
-        return Status.values()[statusId - 1];
+        return Status.values()[statusId];
+    }
+
+    public static Status getStatus(int statusId) {
+        return Status.values()[statusId];
     }
 
     public String getStatusName()

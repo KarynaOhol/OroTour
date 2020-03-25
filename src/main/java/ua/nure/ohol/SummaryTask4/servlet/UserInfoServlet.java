@@ -1,6 +1,12 @@
 package ua.nure.ohol.SummaryTask4.servlet;
 
+import ua.nure.ohol.SummaryTask4.db.QuerySQL;
+import ua.nure.ohol.SummaryTask4.db.beans.Entity;
+import ua.nure.ohol.SummaryTask4.db.beans.Reservation;
+import ua.nure.ohol.SummaryTask4.db.beans.Status;
 import ua.nure.ohol.SummaryTask4.db.beans.Users;
+import ua.nure.ohol.SummaryTask4.db.connection.MySQLConnUtils;
+import ua.nure.ohol.SummaryTask4.db.utils.DBUtils;
 import ua.nure.ohol.SummaryTask4.db.utils.MyUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Map;
 
 
-@WebServlet(urlPatterns = { "/userInfo" })
+@WebServlet(urlPatterns = {"/userInfo"})
 public class UserInfoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -37,6 +46,21 @@ public class UserInfoServlet extends HttpServlet {
         }
         // Сохранить информацию в request attribute перед тем как forward (перенаправить).
         request.setAttribute("user", loginedUser);
+        Map<String, Entity> reservationInfo = null;
+        Connection con = MyUtils.getStoredConnection(request);
+        try {
+            reservationInfo = DBUtils.reservationListForCustumer(con, loginedUser.getId());
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
+
+        if (reservationInfo != null) {
+            Reservation res = (Reservation) reservationInfo.get("Reservation");
+            request.setAttribute("statusName", Status.getStatus(res.getStatusId()));
+        }
+
+
+        request.setAttribute("reservationInfo", reservationInfo);
 
         // Если пользователь уже вошел в систему (login), то forward (перенаправить) к странице
         // /WEB-INF/views/userInfoView.jsp

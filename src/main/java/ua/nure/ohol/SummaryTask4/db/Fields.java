@@ -35,6 +35,7 @@ public final class Fields {
     public static final String DURATION_ID = "tour_duration_id";
     public static final String BEGIN_DATE = "tour_begin_date";
     public static final String END_DATE = "tour_end_date";
+    public static final String DURATION = "duration";
 
     public static final String RESERVATION_ID = "reservation_id";
 
