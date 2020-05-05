@@ -1,5 +1,7 @@
 package ua.nure.ohol.SummaryTask4.db.beans;
-
+/**
+ * Entity to store fields from Tour table
+ */
  public class Tour extends Entity{
     private String tourName;
     private String departureCity;
@@ -11,8 +13,54 @@ package ua.nure.ohol.SummaryTask4.db.beans;
     private int discountID;
     private boolean hotTour ;
     private int durationID;
+     private String tourNameRu;
+     private String departureCityRu;
 
-    public String getTourName() {
+    public String getDepartureCity() {
+        return departureCity;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public int getAvailableTickets() {
+        return availableTickets;
+    }
+
+    public int getAmountTickets() {
+        return amountTickets;
+    }
+
+    public int getDescriptionId() {
+        return descriptionId;
+    }
+
+    public boolean isHotTour() {
+        return hotTour;
+    }
+
+    public int getDurationID() {
+        return durationID;
+    }
+
+    public String getDepartureCityRu() {
+        return departureCityRu;
+    }
+
+    public String getTourNameRu() {
+         return tourNameRu;
+     }
+
+     public void setTourNameRu(String tourNameRu) {
+         this.tourNameRu = tourNameRu;
+     }
+
+     public void setDepartureCityRu(String departureCityRu) {
+         this.departureCityRu = departureCityRu;
+     }
+
+     public String getTourName() {
         return tourName;
     }
 
@@ -20,16 +68,8 @@ package ua.nure.ohol.SummaryTask4.db.beans;
         this.tourName = tourName;
     }
 
-    public String getDepartureCity() {
-        return departureCity;
-    }
-
     public void setDepartureCity(String departureCity) {
         this.departureCity = departureCity;
-    }
-
-    public int getHotelId() {
-        return hotelId;
     }
 
     public void setHotelId(int hotelId) {
@@ -44,24 +84,12 @@ package ua.nure.ohol.SummaryTask4.db.beans;
         this.price = price;
     }
 
-    public int getAvailableTickets() {
-        return availableTickets;
-    }
-
     public void setAvailableTickets(int availableTickets) {
         this.availableTickets = availableTickets;
     }
 
-    public int getAmountTickets() {
-        return amountTickets;
-    }
-
     public void setAmountTickets(int amountTickets) {
         this.amountTickets = amountTickets;
-    }
-
-    public int getDescriptionId() {
-        return descriptionId;
     }
 
     public void setDescriptionId(int descriptionId) {
@@ -76,16 +104,8 @@ package ua.nure.ohol.SummaryTask4.db.beans;
         this.discountID = discountID;
     }
 
-    public boolean isHotTour() {
-        return hotTour;
-    }
-
     public void setHotTour(boolean hotTour) {
         this.hotTour = hotTour;
-    }
-
-    public int getDurationID() {
-        return durationID;
     }
 
     public void setDurationID(int durationID) {

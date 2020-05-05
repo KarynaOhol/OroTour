@@ -4,8 +4,8 @@ body, html {
 
 .parallax {
     /* The image used */
-    background-color: white;
-    background-image: url('../images/rice-plantation-1822444_1920.jpg');
+    /*background-color: white;*/
+    background-image: url('../images/agriculture-1807581_1920.jpg');
 
     /* Full height */
     height: 100%;
@@ -15,13 +15,12 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top:100vh;
-
+    padding-top: 10px;
 }
 
 .parallax-curtain {
-    height: 500px;
-    background-color: rgba(152, 126, 110, 0.54);
+    /* height: max-content; */
+    /* background-color: rgba(152, 126, 110, 0.54); */
     font-size: 36px;
 }
 
@@ -31,3 +30,151 @@ body, html {
         background-attachment: scroll;
     }
 }
+
+.search_page {
+    /* width: 100%; */
+}
+
+.search_page .search_body_row {
+    /*border: 2px dashed #46552c;*/
+    height: 80%;
+    width: 86%;
+    margin: 20px 5%;
+}
+
+.search_page .search_body_row .search_result_column {
+    /*border: 2px dashed #46552c;*/
+    height: 100%;
+    width: 106%;
+    /* margin: 0 0 0 30px; */
+    float: left;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row {
+    /* border: 2px dashed #46552c; */
+    height: 386px;
+    width: 100%;
+    margin: 40px 0;
+    float: top;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column {
+    box-shadow: 0 0 0 1px rgba(60, 60, 60, 0.1), 0 5px 10px 0 rgba(163, 163, 163, 0.65);
+    height: 100%;
+    width: 31%;
+    float: left;
+    font-size: 20px;
+    background-color: white;
+}
+
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column:hover {
+    box-shadow: 0 0 0 1px rgba(19, 19, 19, 0.1), 0 7px 13px 0 rgba(125, 125, 125, 0.65);
+
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column .tour_card .tour_img {
+    height: 65%;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .margin_between_cards {
+    width: 2.5%;
+    border: 2px dashed #ffffff00;
+    float: left;
+}
+
+.tour_inf {
+    padding: 17px;
+}
+
+
+.search {
+    color: white;
+    border-radius: 4px;
+    font-size: 18px;
+    background-color: rgba(31, 41, 77, 0.36);
+    width: 65%;
+    height: 170px;
+    margin: 70px 17.5%;
+}
+
+.search p {
+    margin: 0;
+    padding: 11px 0 0 15px;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+/*_______________________Search field and button_______________________*/
+select#descriptionType {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+}
+
+.row_line {
+    margin-left: 15px;
+    margin-top: 32px;
+}
+
+.row_line .field {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+}
+
+.row_line .departure {
+    width: 19%;
+    float: left;
+    margin-left: 100px;
+    margin-top: -13px;
+    /* width: 100%; */
+    /* height: 40px; */
+    /* border: 0; */
+    /* border-radius: 4px; */
+}
+
+.row_line .swap {
+    margin-top: 8px;
+    margin-left: 5px;
+    float: left;
+}
+
+.row_line .swap:hover {
+    cursor: pointer;
+}
+
+
+.row_line .arrival {
+    margin-left: 5px;
+    width: 19%;
+    float: left;
+}
+
+.row_line .date_start {
+    margin-left: 26px;
+    width: 18%;
+    /* margin-top: 13px; */
+    float: left;
+}
+
+.row_line input[type=text], .row_line input[type=date]{
+    padding: 12px;
+}
+
+.row_line .button_search {
+    margin-left: 125px;
+    width: 18%;
+    margin-top: 6px;
+    float: left;
+}
+
+.row_line .button_wrapper {
+    background-color: #1F294D;
+    color: white;
+}
+
+
+/*_____________________________________________________________________*/

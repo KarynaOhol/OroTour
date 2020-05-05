@@ -46,11 +46,18 @@ CREATE TABLE Hotel
 (
     hotel_id    INTEGER      NOT NULL auto_increment,
     hotel_name  VARCHAR(20)  NOT NULL,
-    hotel_class INTEGER      NOT NULL,
+    hotel_class INTEGER     NULL,
     hotel_site  VARCHAR(200) NULL,
     PRIMARY KEY (hotel_id)
 )
 ;
+
+create table hotel_class
+(
+    hotel_class_id int auto_increment,
+    hotel_class varchar(50) not null UNIQUE ,
+        primary key (hotel_class_id)
+);
 
 
 
@@ -221,6 +228,31 @@ ALTER TABLE Discount
         (discount_step < discount_percent)
         );
 
+alter table hotel
+    add foreign key R_17 (hotel_class) references hotel_class (hotel_class_id)
+            on update cascade;
+
+alter table description
+    add country_ru varchar(20) null;
+
+alter table description
+    add program_tour_ru varchar(2000) null;
+
+alter table description
+    add sport_activity_ru varchar(2000) null;
+
+alter table description
+    add beach_activity_ru varchar(2000) null;
+alter table discount
+    add discount_name_ru varchar(200) null;
+alter table hotel
+    add hotel_name_ru varchar(20) null;
+alter table tour
+    add tour_name_ru varchar(200) null;
+
+alter table tour
+    add departure_city_ru int null;
+
 
 
 INSERT INTO Roles
@@ -279,6 +311,14 @@ INSERT INTO Tour_reservation
 VALUES (default, 1, 0);
 INSERT INTO Reservation_list
 VALUES (4, 1);
+
+INSERT INTO hotel_class
+VALUES (default,'Tourist'),
+       (default,'Standard'),
+       (default,'Comfort'),
+       (default,'First Class'),
+       (default,'Luxury');
+
 
 
 

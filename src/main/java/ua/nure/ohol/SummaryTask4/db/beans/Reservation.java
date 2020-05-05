@@ -1,9 +1,20 @@
 package ua.nure.ohol.SummaryTask4.db.beans;
-
+/**
+ * Entity to store fields from Reservation table
+ */
 public class Reservation extends Entity {
     private int tourId;
     private int statusId;
 
+    public int getNumberOfreserv() {
+        return numberOfreserv;
+    }
+
+    private int numberOfreserv;
+
+    public void setNumberOfreserv(int numberOfreserv) {
+        this.numberOfreserv = numberOfreserv;
+    }
     public int getTourId() {
         return tourId;
     }

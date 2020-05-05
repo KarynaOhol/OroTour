@@ -11,6 +11,10 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Store Connection in attribute in request.
+ * information exist only in request scope
+ */
 public class MyUtils {
 
     private static int REDIRECT_ID = 0;
@@ -22,37 +26,71 @@ public class MyUtils {
 
     private static final String ATT_NAME_USER_NAME = "ATTRIBUTE_FOR_STORE_USER_NAME_IN_COOKIE";
 
-    // Сохранить Connection в attribute в request.
-    // Данная информация хранения существует только во время запроса (request)
-    // до тех пор, пока данные возвращаются приложению пользователя.
+    private static final String ATT_NAME_CURRENT_LANGUAGE = "language";
+
     public static void storeConnection(ServletRequest request, Connection conn) {
-        request.setAttribute(ATT_NAME_CONNECTION,conn);
+        request.setAttribute(ATT_NAME_CONNECTION, conn);
     }
 
-    // Получить объект Connection сохраненный в attribute в request.
+
+    /**
+     * Get Connection  stored in attribute  in request.
+     *
+     * @param request
+     * @return
+     */
     public static Connection getStoredConnection(ServletRequest request) {
         Connection conn = (Connection) request.getAttribute(ATT_NAME_CONNECTION);
         return conn;
     }
 
-    // Сохранить информацию пользователя, который вошел в систему (login) в Session.
+
+    public static void storeLanguage(HttpServletResponse response, String language) {
+        Cookie cookie = new Cookie(ATT_NAME_CURRENT_LANGUAGE, language);
+        // 7 день (Конвертированный в секунды)
+        cookie.setMaxAge(7 * 24 * 60 * 60);
+        response.addCookie(cookie);
+    }
+
+    public static String getStoredLanguage(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (ATT_NAME_CURRENT_LANGUAGE.equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Store logined user in  Session.
+     *
+     * @param session
+     * @param loginedUser
+     */
     public static void storeLoginedUser(HttpSession session, Users loginedUser) {
-        // В JSP можно получить доступ через ${loginedUser}
         session.setAttribute("loginedUser", loginedUser);
     }
 
-    // Получить информацию пользователя, сохраненная в Session.
     public static Users getLoginedUser(HttpSession session) {
-        Users loginedUser = (Users) session.getAttribute("loginedUser");
-        return loginedUser;
+        return (Users) session.getAttribute("loginedUser");
     }
 
-    // Сохранить информацию пользователя в Cookie.
+
+    /**
+     * Store user information in  Cookie.
+     *
+     * @param response
+     * @param user
+     */
     public static void storeUserCookie(HttpServletResponse response, Users user) {
         System.out.println("Store user cookie");
         Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, user.getLogin());
-        // 1 день (Конвертированный в секунды)
-        cookieUserName.setMaxAge(24 * 60 * 60);
+        // 7 день (Конвертированный в секунды)
+        cookieUserName.setMaxAge(7 * 24 * 60 * 60);
         response.addCookie(cookieUserName);
     }
 
@@ -68,10 +106,9 @@ public class MyUtils {
         return null;
     }
 
-    // Удалить Cookie пользователя
+
     public static void deleteUserCookie(HttpServletResponse response) {
         Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, null);
-        // 0 секунд. (Данный Cookie будет сразу недействителен)
         cookieUserName.setMaxAge(0);
         response.addCookie(cookieUserName);
     }
@@ -91,10 +128,6 @@ public class MyUtils {
     }
 
     public static String getRedirectAfterLoginUrl(HttpSession session, int redirectId) {
-        String url = id_uri_map.get(redirectId);
-        if (url != null) {
-            return url;
-        }
-        return null;
+        return id_uri_map.get(redirectId);
     }
 }

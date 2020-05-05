@@ -5,17 +5,26 @@
   Time: 21:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <html>
 <head>
-    <meta charset="UTF-8"/>
-    <title>Error Page</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/accessDeniedStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
 </head>
 <body>
 <jsp:include page="_header.jsp"/>
 <jsp:include page="_menu.jsp"/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<img src="${pageContext.request.contextPath}/images/error.png" alt="Error" style="width:20%;">
 
-<img src="images/accessDenied.png" alt="accessDenied.png" style="text-align: center">
+
 
 <jsp:include page="_footer.jsp"/>
 

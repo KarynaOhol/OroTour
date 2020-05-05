@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * find user stored in Cookie
+ */
 @WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
 public class CookieFilter implements Filter {
 
@@ -43,10 +46,10 @@ public class CookieFilter implements Filter {
             return;
         }
 
-        // Connection создан в JDBCFilter.
+        // Connection in JDBCFilter.
         Connection conn = MyUtils.getStoredConnection(request);
 
-        // Флаг(flag) для проверки Cookie.
+        // flag for Cookie.
         String checked = (String) session.getAttribute("COOKIE_CHECKED");
         if (checked == null && conn != null) {
             String userName = MyUtils.getUserNameInCookie(req);
@@ -56,7 +59,7 @@ public class CookieFilter implements Filter {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            // Отметить проверенные Cookie.
+            // mark Cookie.
             session.setAttribute("COOKIE_CHECKED", "CHECKED");
         }
 

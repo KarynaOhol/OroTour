@@ -14,9 +14,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 
-@WebServlet(urlPatterns = { "/login" })
+@WebServlet(name = "Login", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -28,26 +31,34 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String language = MyUtils.getStoredLanguage(request);
+        if (language == null) {
+            language = "en";
+        }
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("warnings", new Locale(language));
+        request.setAttribute("errorString", resourceBundle.getString("w.login"));
 
-        // Forward (перенаправить) к странице /WEB-INF/views/loginView.jsp
-        // (Пользователь не может прямо получить доступ
-        // к страницам JSP расположенные в папке WEB-INF).
         RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/homeView.jsp");
 
         dispatcher.forward(request, response);
 
     }
 
-    // Когда пользователь вводит userName & password, и нажимает Submit.
-    // Этот метод будет выполнен.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        String rememberMeStr = request.getParameter("rememberMe");
+        String rememberMeStr = request.getParameter("remember");
         boolean remember = "Y".equals(rememberMeStr);
+
+        String language = MyUtils.getStoredLanguage(request);
+        if (language == null) {
+            language = "en";
+        }
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("warnings", new Locale(language));
+        request.setAttribute("errorString", resourceBundle.getString("w.login"));
 
         Users user = null;
         boolean hasError = false;
@@ -55,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 
         if (userName == null || password == null || userName.length() == 0 || password.length() == 0) {
             hasError = true;
-            errorString = "Required username and password!";
+            errorString = resourceBundle.getString("w.login_password");
         } else {
             Connection conn = MyUtils.getStoredConnection(request);
             try {
@@ -64,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 
                 if (user == null) {
                     hasError = true;
-                    errorString = "User Name or password invalid";
+                    errorString = resourceBundle.getString("w.invalid");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -72,6 +83,15 @@ public class LoginServlet extends HttpServlet {
                 errorString = e.getMessage();
             }
         }
+
+        if (!hasError && !user.isValidUser()) {
+            RequestDispatcher dispatcher //
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/blockedUserView.jsp");
+
+            dispatcher.forward(request, response);
+            return;
+        }
+
         // В случае, если есть ошибка,
         // forward (перенаправить) к /WEB-INF/views/login.jsp
         if (hasError) {
@@ -85,7 +105,7 @@ public class LoginServlet extends HttpServlet {
 
             // Forward (перенаправить) к странице /WEB-INF/views/login.jsp
             RequestDispatcher dispatcher //
-                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/homeView.jsp");
 
             dispatcher.forward(request, response);
         }
@@ -105,8 +125,22 @@ public class LoginServlet extends HttpServlet {
                 MyUtils.deleteUserCookie(response);
             }
 
-            // Redirect (Перенаправить) на страницу /userInfo.
-            response.sendRedirect(request.getContextPath() + "/userInfo");
+            int redirectId;
+            String loginUrl = null;
+            try{
+                redirectId = (int) session.getAttribute("redirectId");
+                loginUrl = MyUtils.getRedirectAfterLoginUrl(session, redirectId);
+            } catch (NullPointerException e){
+                System.out.println(e.getMessage());
+            }
+
+            if(loginUrl != null){
+                response.sendRedirect(loginUrl);
+            } else {
+
+                // Redirect (Перенаправить) на страницу /userInfo.
+                response.sendRedirect(request.getContextPath() + "/userInfo");
+            }
         }
     }
 }

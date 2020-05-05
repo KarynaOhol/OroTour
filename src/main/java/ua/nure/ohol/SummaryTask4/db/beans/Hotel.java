@@ -1,5 +1,7 @@
 package ua.nure.ohol.SummaryTask4.db.beans;
-
+/**
+ * Entity to store fields from Hotel table
+ */
 public class Hotel extends Entity {
     private String hotelName;
     private int hotelClass;
@@ -7,6 +9,10 @@ public class Hotel extends Entity {
 
     public String getHotelName() {
         return hotelName;
+    }
+
+    public String getHotelSite() {
+        return hotelSite;
     }
 
     public void setHotelName(String hotelName) {
@@ -21,11 +27,17 @@ public class Hotel extends Entity {
         this.hotelClass = hotelClass;
     }
 
-    public String getHotelSite() {
-        return hotelSite;
-    }
 
     public void setHotelSite(String hotelSite) {
         this.hotelSite = hotelSite;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel [" +
+                "hotelName='" + hotelName + '\'' +
+                ", hotelClass=" + hotelClass +
+                ", hotelSite='" + hotelSite + '\'' +
+                ", id=" + getId() + ']';
     }
 }

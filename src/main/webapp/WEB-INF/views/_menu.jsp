@@ -1,3 +1,5 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: karina
@@ -12,6 +14,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body {
@@ -29,12 +32,12 @@
             display: block;
             color: #795642;
             text-align: center;
-            padding: 25px 33px;
+            padding: 25px 60px;
             text-decoration: none;
             font-size: 17px;
         }
 
-        #img{
+        #img {
             float: left;
         }
 
@@ -80,6 +83,7 @@
                 text-align: left;
             }
         }
+
         .sticky {
             position: fixed;
             top: 0;
@@ -89,15 +93,18 @@
     </style>
 </head>
 <body>
+<fmt:setLocale value="${language}"/>
+
 <div class="topnav" id="myTopnav">
-    <img src="images/logo1.png" alt="logo.png" width="789" height="70" id ="img">
-    <a class="active" href="${pageContext.request.contextPath}/home" id="fr">HOME</a>
-    <a href="#news">TOUR SEARCH</a>
-    <a href="#contact">HOT TOUR</a>
-    <a href="#about">DESTINATIONS</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
+    <fmt:bundle basename="staticinformation" prefix="menu.href.">
+        <img src="images/menuLogo.png" alt="logo.png" width="789" height="70" id="img">
+        <a class="active" href="${pageContext.request.contextPath}/home" id="fr"><fmt:message key="home"/></a>
+        <a href="${pageContext.request.contextPath}/tourSearch"><fmt:message key="tour_search"/></a>
+        <a href="${pageContext.request.contextPath}/hotTours"><fmt:message key="hot_tour"/></a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </fmt:bundle>
 </div>
 
 <script>
@@ -110,18 +117,20 @@
         }
     }
 
-    window.onscroll = function() {myFunction()};
+    window.onscroll = function () {
+        myFunction()
+    };
 
-    var header = document.getElementById("myTopnav");
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-        } else {
-            header.classList.remove("sticky");
-        }
-    }
+    // var header = document.getElementById("myTopnav");
+    // var sticky = header.offsetTop;
+    //
+    // function myFunction() {
+    //     if (window.pageYOffset > sticky) {
+    //         header.classList.add("sticky");
+    //     } else {
+    //         header.classList.remove("sticky");
+    //     }
+    // }
 </script>
 
 </body>

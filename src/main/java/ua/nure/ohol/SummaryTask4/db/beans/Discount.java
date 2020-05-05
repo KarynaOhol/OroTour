@@ -1,13 +1,29 @@
 package ua.nure.ohol.SummaryTask4.db.beans;
-
+/**
+ * Entity to store fields from discount table
+ */
 public class Discount extends Entity {
     private int discountPercent;
     private String discountName;
+    private String discountNameRu;
     private String discountDateFrom;
     private String discountDateTo;
     private float discountPrice;
     private String discountLastChangeData;
     private int discountStep;
+
+    public String getDiscountName() {
+        return discountName;
+    }
+
+    public String getDiscountNameRu() {
+        return discountNameRu;
+    }
+
+    public void setDiscountNameRu(String discountNameRu) {
+        this.discountNameRu = discountNameRu;
+    }
+
 
     public int getDiscountStep() {
         return discountStep;
@@ -33,9 +49,6 @@ public class Discount extends Entity {
         this.discountPercent = discountPercent;
     }
 
-    public String getDiscountName() {
-        return discountName;
-    }
 
     public void setDiscountName(String discountName) {
         this.discountName = discountName;
@@ -63,5 +76,17 @@ public class Discount extends Entity {
 
     public void setDiscountPrice(float discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Discount [ discountStep = " + discountStep +
+                ", discountLastChangeData = " + discountLastChangeData +
+                ", discountPrice = " + discountPrice +
+                ", discountDateTo = " + discountDateTo +
+                ", discountDateFrom = " + discountDateFrom +
+                ", discountName = " + discountName +
+                ", discountPercent = " + discountPercent +
+                ", getId() = " + super.getId();
     }
 }

@@ -19,10 +19,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 
-@WebServlet(urlPatterns = {"/userInfo"})
+@WebServlet(name = "UserInfo", urlPatterns = {"/userInfo"})
 public class UserInfoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -45,7 +47,6 @@ public class UserInfoServlet extends HttpServlet {
             return;
         }
         // Сохранить информацию в request attribute перед тем как forward (перенаправить).
-        request.setAttribute("user", loginedUser);
         Map<String, Entity> reservationInfo = null;
         Connection con = MyUtils.getStoredConnection(request);
         try {
@@ -54,16 +55,12 @@ public class UserInfoServlet extends HttpServlet {
             s.printStackTrace();
         }
 
-        if (reservationInfo != null) {
-            Reservation res = (Reservation) reservationInfo.get("Reservation");
-            request.setAttribute("statusName", Status.getStatus(res.getStatusId()));
-        }
-
+        System.out.println(reservationInfo);
 
         request.setAttribute("reservationInfo", reservationInfo);
+        request.setAttribute("user", loginedUser);
 
-        // Если пользователь уже вошел в систему (login), то forward (перенаправить) к странице
-        // /WEB-INF/views/userInfoView.jsp
+
         RequestDispatcher dispatcher //
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfoView.jsp");
         dispatcher.forward(request, response);

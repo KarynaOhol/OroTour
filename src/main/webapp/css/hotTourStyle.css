@@ -1,0 +1,69 @@
+
+.search_page {
+    width: 100%;
+}
+.search_page .img_head_row  {
+    background-image: url("../images/bora-bora-3023437_1920.jpg");
+    width: 100%;
+    height: 35%;
+}
+
+.search_page .img_head_row h1 {
+    margin: 0;
+    padding-top: 90px;
+    padding-left: 600px;
+    color: white;
+}
+
+.search_page .search_body_row {
+    /*border: 2px dashed #46552c;*/
+    height: 80%;
+    width: 86%;
+    margin: 20px 5%;
+}
+
+.search_page .search_body_row .search_result_column {
+    /*border: 2px dashed #46552c;*/
+    height: 100%;
+    width: 106%;
+    /* margin: 0 0 0 30px; */
+    float: left;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row {
+    /*border: 2px dashed #46552c;*/
+    height: 300px;
+    width: 100%;
+    margin: 40px 0;
+    float: top;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column{
+    box-shadow: 0 0 0 1px  rgba(60, 60, 60, 0.1), 0 5px 10px 0 rgba(163, 163, 163, 0.65);
+    height: 100%;
+    width: 31%;
+    float: left;
+    font-size: 20px;
+}
+
+
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column:hover{
+    box-shadow: 0 0 0 1px rgba(19, 19, 19, 0.1), 0 7px 13px 0 rgba(125, 125, 125, 0.65);
+
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column .tour_card .tour_img{
+    height: 65%;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .margin_between_cards{
+    width: 2.5%;
+    border: 2px dashed #ffffff;
+    float: left;
+}
+
+.tour_inf {
+    padding: 17px;
+}
+

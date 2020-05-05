@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/*")
+/**
+ * Controls permission to pages
+ */
+@WebFilter(filterName = "securityFilter", urlPatterns = "/*")
 public class SecurityFilter implements Filter {
 
     public SecurityFilter() {
@@ -30,8 +33,6 @@ public class SecurityFilter implements Filter {
 
         String servletPath = request.getServletPath();
 
-        // Информация пользователя сохранена в Session
-        // (После успешного входа в систему).
         Users loginedUser = MyUtils.getLoginedUser(request.getSession());
 
         if (servletPath.equals("/login")) {
@@ -47,27 +48,25 @@ public class SecurityFilter implements Filter {
             // Роли (Role).
             String role = String.valueOf(Roles.getRole(loginedUser));
 
-            // Старый пакет request с помощью нового Request с информацией userName и Roles.
             wrapRequest = new UserRoleRequestWrapper(userName, role, request);
         }
 
-        // Страницы требующие входа в систему.
+
         if (SecurityUtils.isSecurityPage(request)) {
 
-            // Если пользователь еще не вошел в систему,
-            // Redirect (перенаправить) к странице логина.
+
             if (loginedUser == null) {
 
                 String requestUri = request.getRequestURI();
 
-                // Сохранить текущую страницу для перенаправления (redirect) после успешного входа в систему.
                 int redirectId = MyUtils.storeRedirectAfterLoginUrl(request.getSession(), requestUri);
 
-                response.sendRedirect(wrapRequest.getContextPath() + "/login?redirectId=" + redirectId);
+                wrapRequest.getSession().setAttribute("redirectId", redirectId);
+
+                response.sendRedirect(wrapRequest.getContextPath() + "/login");
                 return;
             }
 
-            // Проверить пользователь имеет действительную роль или нет?
             boolean hasPermission = SecurityUtils.hasPermission(wrapRequest);
             if (!hasPermission) {
 

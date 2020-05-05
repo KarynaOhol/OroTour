@@ -3,6 +3,9 @@ package ua.nure.ohol.SummaryTask4.db.connection;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * working with connection and transaction
+ */
 public class ConnectionUtils {
 
     public static Connection getConnection()

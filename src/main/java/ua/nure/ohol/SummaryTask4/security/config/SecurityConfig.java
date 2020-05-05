@@ -21,6 +21,7 @@ public class SecurityConfig {
         List<String> urlPatterns1 = new ArrayList<String>();
 
         urlPatterns1.add("/userInfo");
+        urlPatterns1.add("/tourBooking");
 
         mapConfig.put(String.valueOf(Roles.getRole(2)), urlPatterns1);
 
@@ -28,7 +29,7 @@ public class SecurityConfig {
         List<String> urlPatterns2 = new ArrayList<String>();
 
         urlPatterns2.add("/userInfo");
-        urlPatterns2.add("/managerPage");
+        urlPatterns2.add("/managerInfo");
 
         mapConfig.put(String.valueOf(Roles.getRole(1)), urlPatterns2);
 
@@ -36,8 +37,11 @@ public class SecurityConfig {
         List<String> urlPatterns3 = new ArrayList<String>();
 
         urlPatterns3.add("/userInfo");
-        urlPatterns3.add("/managerPage");
-        urlPatterns3.add("/adminPage");
+        urlPatterns3.add("/managerInfo");
+        urlPatterns3.add("/addTour");
+        urlPatterns3.add("/editTour");
+
+
 
         mapConfig.put(String.valueOf(Roles.getRole(0)), urlPatterns3);
     }

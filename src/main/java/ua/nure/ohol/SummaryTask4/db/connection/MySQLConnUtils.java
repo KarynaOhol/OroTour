@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * connection to  MySql Database
+ */
 public class MySQLConnUtils {
 
     public static Connection getMySQLConnection()
@@ -21,9 +24,6 @@ public class MySQLConnUtils {
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        // Структура URL Connection для MySQL:
-        // Например:
-        // jdbc:mysql://localhost:3306/simplehr
         String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName+"?useUnicode=true&serverTimezone=UTC";
 
         Connection conn = DriverManager.getConnection(connectionURL, userName,

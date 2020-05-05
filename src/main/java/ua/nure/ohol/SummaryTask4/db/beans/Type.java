@@ -2,7 +2,7 @@ package ua.nure.ohol.SummaryTask4.db.beans;
 
 public enum  Type {
     CITY_TOURS,
-    CULTYRAL_Thematic_TOURS,
+    CULTYRAL_THEMATIC_TOURS,
     HOLIDAY_SEASONAL_TOURS,
     INDULGENCE_LUXURY_TOURS,
     OUTDOOR_ACTIVITES,
@@ -15,7 +15,7 @@ public enum  Type {
     }
 
     public String getTypeName() {
-        return name().toLowerCase();
+        return name().toUpperCase();
     }
 
 }
