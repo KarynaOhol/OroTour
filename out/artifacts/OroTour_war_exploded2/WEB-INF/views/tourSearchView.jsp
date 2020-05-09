@@ -128,27 +128,27 @@
                                         <div class="tour_card">
                                             <div class="tour_img">
                                                 <img alt="img"
-                                                     src="data:image/jpeg;base64,${tour.get(index).value.value.base64image}"
+                                                     src="data:image/jpeg;base64,${tour.get(index).right.right.base64image}"
                                                      width="100%" height="100%"/></div>
                                             <div class="tour_inf">
                                                 <script>
-                                                    tourIdArray.push(${tour.get(index).key.key.id});
+                                                    tourIdArray.push(${tour.get(index).left.left.id});
                                                 </script>
-                                                <c:if test="${tour.get(index).key.key.hotTour==true}">
+                                                <c:if test="${tour.get(index).left.left.hotTour==true}">
                                                     <a style="color: #f77f00; font-size: 25px">
                                                         <i class="fa fa-fw fa-fire"></i>
                                                     </a>
                                                 </c:if>
-                                                <c:if test="${tour.get(index).key.key.discountID != 0 && tour.get(index).key.key.hotTour==false}">
+                                                <c:if test="${tour.get(index).left.left.discountID != 0 && tour.get(index).left.left.hotTour==false}">
                                                     <a style="color: #439795; font-size: 25px">
                                                         <i class="fa fa-fw fa-percent"></i>
                                                     </a>
                                                 </c:if>
                                                 <c:if test="${language == 'ru'}">
-                                                    ${tour.get(index).key.key.tourNameRu}
+                                                    ${tour.get(index).left.left.tourNameRu}
                                                 </c:if>
                                                 <c:if test="${language == 'en'}">
-                                                    ${tour.get(index).key.key.tourName}
+                                                    ${tour.get(index).left.left.tourName}
                                                 </c:if>
 
                                                 <p></p>
@@ -156,21 +156,21 @@
                                                 <div>
                                                     <a style="color: #4D626A;float: left;"><i
                                                             class="fa fa-fw fa-calendar"></i>
-                                                            ${tour.get(index).value.key.durationInDays}
+                                                            ${tour.get(index).right.left.durationInDays}
                                                         <fmt:message key="days"/>
                                                     </a>
-                                                    <c:if test="${tour.get(index).key.key.discountID != 0 }">
+                                                    <c:if test="${tour.get(index).left.left.discountID != 0 }">
                                                         <a style="color: #637349; float:right">
-                                                            <b>${tour.get(index).key.value.discountPrice}</b>
-                                                            <s>${tour.get(index).key.key.price}</s>
+                                                            <b>${tour.get(index).left.right.discountPrice}</b>
+                                                            <s>${tour.get(index).left.left.price}</s>
                                                             <i class="fa fa-fw fa-money"></i>
 
                                                         </a>
                                                     </c:if>
-                                                    <c:if test="${tour.get(index).key.key.discountID == 0}">
+                                                    <c:if test="${tour.get(index).left.left.discountID == 0}">
 
                                                         <a style="color: #637349; float:right">
-                                                            <b>${tour.get(index).key.key.price}</b>
+                                                            <b>${tour.get(index).left.left.price}</b>
                                                             <i class="fa fa-fw fa-money"></i>
                                                         </a>
                                                     </c:if>
