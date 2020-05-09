@@ -1,7 +1,6 @@
 package ua.nure.ohol.SummaryTask4.servlet;
 
-
-import io.vavr.Tuple2;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import ua.nure.ohol.SummaryTask4.db.beans.Description;
 import ua.nure.ohol.SummaryTask4.db.beans.Discount;
 import ua.nure.ohol.SummaryTask4.db.beans.Duration;
@@ -26,7 +25,7 @@ import java.util.Map;
 public class HotToursServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tourMap = null;
+        List<ImmutablePair<ImmutablePair<Tour, Discount>, ImmutablePair<Duration, Description>>> tourMap = null;
         String language = MyUtils.getStoredLanguage(req);
 
         Connection connection = MyUtils.getStoredConnection(req);
