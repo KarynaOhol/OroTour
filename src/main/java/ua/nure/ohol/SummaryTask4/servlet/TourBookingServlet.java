@@ -4,9 +4,7 @@ import ua.nure.ohol.SummaryTask4.db.beans.Users;
 import ua.nure.ohol.SummaryTask4.db.connection.ConnectionUtils;
 import ua.nure.ohol.SummaryTask4.db.utils.DBUtils;
 import ua.nure.ohol.SummaryTask4.db.utils.MyUtils;
-import ua.nure.ohol.SummaryTask4.security.utils.SecurityUtils;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
