@@ -21,6 +21,8 @@
 <jsp:useBean id="StatusBean" scope="request"
              class="ua.nure.ohol.SummaryTask4.db.beans.StatusBean"/>
 <body>
+<c:set var="language" value="${cookie.language.value !=null ? cookie.language.value :'en'}" scope="session"/>
+
 <fmt:setLocale value="${language}"/>
 
 <jsp:include page="_header.jsp"/>

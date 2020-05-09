@@ -17,6 +17,8 @@
 
 </head>
 <body>
+<c:set var="language" value="${cookie.language.value !=null ? cookie.language.value :'en'}" scope="session"/>
+
 <fmt:setLocale value="${language}"/>
 
 <jsp:include page="_header.jsp"/>
@@ -25,6 +27,12 @@
              class="ua.nure.ohol.SummaryTask4.db.beans.TypeBean"/>
 <jsp:useBean id="HotelClass" scope="request"
              class="ua.nure.ohol.SummaryTask4.db.beans.HotelClassBean"/>
+
+<c:if test="${error != null}">
+    <script>
+        openLoginForm();
+    </script>
+</c:if>
 
 <div class="tour_page">
     <fmt:bundle basename="staticinformation">

@@ -1155,6 +1155,15 @@ public class DBUtils {
         }
     }
 
+    public static Map<String, Float> findTopUsers(Connection conn) throws SQLException {
+        ResultSet rs = conn.createStatement().executeQuery(QuerySQL.SQL_FIND_TOP_USERS);
+        Map<String, Float> map = new LinkedHashMap<>();
+        while (rs.next()) {
+            map.put(rs.getString(1) + " " + rs.getString(2), rs.getFloat(3));
+        }
+        return map;
+    }
+
 }
 
 

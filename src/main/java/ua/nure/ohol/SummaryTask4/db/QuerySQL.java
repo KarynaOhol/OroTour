@@ -243,6 +243,12 @@ public final class QuerySQL {
     public static final String SQL_FIND_LAST_DISCOUNT = "  select * from discount ORDER BY discount_id DESC  limit 1;";
 
 
+    public static final String SQL_FIND_USERS_RESERV="SELECT u.first_name,u.last_name, SUM(price) total FROM reservation_list rl JOIN tour_reservation tr " +
+            "on rl.reservation_id = tr.reservation_id JOIN tour t on tr.tour_id = t.tour_id JOIN users u on rl.user_id = u.user_id GROUP BY rl.user_id";
+
+    public static final String SQL_FIND_TOP_USERS ="SELECT u.first_name,u.last_name, SUM(price) total FROM reservation_list rl JOIN tour_reservation tr " +
+            "on rl.reservation_id = tr.reservation_id JOIN tour t on " +
+            "tr.tour_id = t.tour_id  Join users u on rl.user_id = u.user_id GROUP BY rl.user_id ORDER BY total DESC LIMIT 3";
 }
 
 

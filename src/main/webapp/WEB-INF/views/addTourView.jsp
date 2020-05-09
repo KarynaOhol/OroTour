@@ -19,6 +19,8 @@
 </head>
 
 <body>
+<c:set var="language" value="${cookie.language.value !=null ? cookie.language.value :'en'}" scope="session"/>
+
 <fmt:setLocale value="${language}"/>
 
 <jsp:include page="_header.jsp"/>

@@ -36,6 +36,8 @@
     }
 </style>
 <body>
+<c:set var="language" value="${cookie.language.value !=null ? cookie.language.value :'en'}" scope="session"/>
+
 <fmt:setLocale value="${language}"/>
 
 <jsp:include page="_header.jsp"/>
@@ -48,9 +50,12 @@
             <c:when test="${tabId=='reservation'}">
                 <button class="tablinks" onclick="openTab(event, 'resList')" id="defaultOpen"><fmt:message
                         key="userInfo.field.reservation"/></button>
+                <button class="tablinks" onclick="openTab(event, 'topUsers')"><fmt:message
+                        key="admin.field.topUsers"/></button>
                 <button class="tablinks" onclick="openTab(event, 'hot')"><fmt:message key="hot_tour_admin"/></button>
                 <button class="tablinks" onclick="openTab(event, 'discount')"><fmt:message
                         key="admin.field.discount"/></button>
+
                 <c:if test="${user.roleId==0}">
                     <button class="tablinks" onclick="openTab(event, 'tourAdm')"><fmt:message
                             key="admin.field.touradmi"/></button>
@@ -61,6 +66,8 @@
             <c:when test="${tabId=='hot'}">
                 <button class="tablinks" onclick="openTab(event, 'resList')"><fmt:message
                         key="userInfo.field.reservation"/></button>
+                <button class="tablinks" onclick="openTab(event, 'topUsers')"><fmt:message
+                        key="admin.field.topUsers"/></button>
                 <button class="tablinks" onclick="openTab(event, 'hot')" id="defaultOpen"><fmt:message
                         key="hot_tour_admin"/></button>
                 <button class="tablinks" onclick="openTab(event, 'discount')"><fmt:message
@@ -75,6 +82,8 @@
             <c:when test="${tabId=='discount'}">
                 <button class="tablinks" onclick="openTab(event, 'resList')"><fmt:message
                         key="userInfo.field.reservation"/></button>
+                <button class="tablinks" onclick="openTab(event, 'topUsers')"><fmt:message
+                        key="admin.field.topUsers"/></button>
                 <button class="tablinks" onclick="openTab(event, 'hot')"><fmt:message key="hot_tour_admin"/></button>
                 <button class="tablinks" onclick="openTab(event, 'discount')" id="defaultOpen"><fmt:message
                         key="admin.field.discount"/></button>
@@ -88,6 +97,8 @@
             <c:when test="${tabId=='tourAdm'}">
                 <button class="tablinks" onclick="openTab(event, 'resList')"><fmt:message
                         key="userInfo.field.reservation"/></button>
+                <button class="tablinks" onclick="openTab(event, 'topUsers')"><fmt:message
+                        key="admin.field.topUsers"/></button>
                 <button class="tablinks" onclick="openTab(event, 'hot')"><fmt:message key="hot_tour_admin"/></button>
                 <button class="tablinks" onclick="openTab(event, 'discount')"><fmt:message
                         key="admin.field.discount"/></button>
@@ -103,6 +114,8 @@
             <c:when test="${tabId=='userInf'}">
                 <button class="tablinks" onclick="openTab(event, 'resList')"><fmt:message
                         key="userInfo.field.reservation"/></button>
+                <button class="tablinks" onclick="openTab(event, 'topUsers')"><fmt:message
+                        key="admin.field.topUsers"/></button>
                 <button class="tablinks" onclick="openTab(event, 'hot')"><fmt:message key="hot_tour_admin"/></button>
                 <button class="tablinks" onclick="openTab(event, 'discount')"><fmt:message
                         key="admin.field.discount"/></button>
@@ -201,8 +214,36 @@
             </tbody>
         </table>
     </div>
+    <div id="topUsers" class="tabcontent">
+        <br/>
+        <br/>
 
-    <div id="hot" class="tabcontent"    >
+        <table>
+            <thead>
+            <tr>
+                <th scope="col"><fmt:message key="admin.field.customer"/></th>
+                <fmt:bundle basename="constants">
+                    <th scope="col"><fmt:message key="total.price"/></th>
+                </fmt:bundle>
+            </tr>
+            </thead>
+            <tbody>
+
+            <c:forEach items="${topUsers}" var="entity">
+                <tr>
+                    <td>${entity.key}</td>
+                    <td>${entity.value}</td>
+                </tr>
+
+            </c:forEach>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <div id="hot" class="tabcontent">
         <h3><fmt:message key="hot_tour_admin"/></h3>
         <p><fmt:message key="admin.field.descHot"/></p>
 
@@ -334,14 +375,14 @@
                                 </select></div>
                             </td>
                             <td>
-                            <c:if test="${language=='ru'}">
+                                <c:if test="${language=='ru'}">
                                   <textarea class="autoresizing" name="discName" form="chDiscount" required
                                             style="width: 100px;">${step.value.discountNameRu}</textarea>
-                            </c:if>
-                            <c:if test="${language=='en'}">
+                                </c:if>
+                                <c:if test="${language=='en'}">
                                   <textarea class="autoresizing" name="discName" form="chDiscount" required
                                             style="width: 100px;">${step.value.discountName}</textarea>
-                            </c:if>
+                                </c:if>
 
                             </td>
                             <td><input type="number" value="${step.value.discountPercent}" name="percent"

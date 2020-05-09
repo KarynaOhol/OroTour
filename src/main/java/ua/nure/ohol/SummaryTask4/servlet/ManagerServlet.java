@@ -38,8 +38,16 @@ public class ManagerServlet extends HttpServlet {
         Map<Tour, Discount> tourDiscount = new LinkedHashMap<>();
         String tabId = req.getParameter("tab_id");
 
+        Map<String ,Float> topUsers = null;
+
 
         Connection con = MyUtils.getStoredConnection(req);
+        try {
+            topUsers=DBUtils.findTopUsers(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         try {
             reservationInfo = DBUtils.reservationList(con);
@@ -105,6 +113,7 @@ public class ManagerServlet extends HttpServlet {
         req.setAttribute("tourDiscount", tourDiscount);
         req.setAttribute("userInfo", userInf);
         req.setAttribute("tourInfo", tourInfo);
+        req.setAttribute("topUsers", topUsers);
 
         if (tabId != null) {
             req.setAttribute("tabId", tabId);

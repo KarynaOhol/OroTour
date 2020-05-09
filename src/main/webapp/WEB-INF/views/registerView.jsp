@@ -10,6 +10,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/loginStyle.css">
+<c:set var="language" value="${cookie.language.value !=null ? cookie.language.value :'en'}" scope="session"/>
+
 <fmt:setLocale value="${language}"/>
 
 <div id="register" class="modal">

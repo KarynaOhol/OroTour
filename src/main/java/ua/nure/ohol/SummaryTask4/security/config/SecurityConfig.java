@@ -21,7 +21,7 @@ public class SecurityConfig {
         List<String> urlPatterns1 = new ArrayList<String>();
 
         urlPatterns1.add("/userInfo");
-        urlPatterns1.add("/tourBooking");
+//        urlPatterns1.add("/tourBooking");
 
         mapConfig.put(String.valueOf(Roles.getRole(2)), urlPatterns1);
 

@@ -35,7 +35,8 @@ public class TourBookingServlet extends HttpServlet {
         int reservationId = 0;
         boolean isErrorCheck = false;
 
-        if (SecurityUtils.hasPermission(req)) {
+        req.getSession().setAttribute("tourId", tourId);
+        if (user != null) {
             try {
                 con.setAutoCommit(false);
             } catch (SQLException e) {
@@ -62,10 +63,14 @@ public class TourBookingServlet extends HttpServlet {
             } else {
                 ConnectionUtils.rollbackQuietly(con);
             }
-            resp.sendRedirect(req.getContextPath() + "/tourPage?tour_id=" + tourId+"&booked=true");
+            resp.sendRedirect(req.getContextPath() + "/tourPage?tour_id=" + tourId + "&booked=true");
 
         } else {
-            resp.sendRedirect(req.getContextPath() + "/login");
+            String requestUri = req.getContextPath() + "/tourPage?tour_id=" + tourId;
+            int redirectId = MyUtils.storeRedirectAfterLoginUrl(req.getSession(), requestUri);
+            req.getSession().setAttribute("redirectId", redirectId);
+
+            resp.sendRedirect(req.getContextPath() + "/tourPage?tour_id=" + tourId + "&error=error");
         }
 
     }

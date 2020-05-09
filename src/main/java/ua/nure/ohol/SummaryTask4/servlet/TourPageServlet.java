@@ -31,6 +31,9 @@ public class TourPageServlet extends HttpServlet {
         Map<String, Entity> tour = null;
 
 
+        if(tourId ==  null){
+            tourId = (String) req.getSession().getAttribute("tourId");
+        }
 
         try {
             tour = DBUtils.findTourFullyByTourId(connection, Integer.parseInt(tourId));
@@ -55,6 +58,7 @@ public class TourPageServlet extends HttpServlet {
         }
         req.setAttribute("tour", tour);
         req.setAttribute("booked", booking);
+        req.setAttribute("error", req.getParameter("error"));
         req.setAttribute("discount", discount);
         RequestDispatcher dispatcher //
                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/tourPageView.jsp");

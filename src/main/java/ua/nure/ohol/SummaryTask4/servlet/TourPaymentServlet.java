@@ -54,6 +54,7 @@ public class TourPaymentServlet extends HttpServlet {
                     check = true;
                 }
 
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
