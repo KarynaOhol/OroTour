@@ -1,0 +1,194 @@
+
+.search_page {
+    width: 100%;
+}
+.search_page .img_head_row  {
+    background-image: url("../images/search.png");
+    width: 100%;
+    height: 35%;
+}
+
+.search_page .img_head_row h1 {
+    margin: 0;
+    padding-top: 90px;
+    padding-left: 600px;
+    color: white;
+}
+
+.search_page .search_body_row {
+    /*border: 2px dashed #46552c;*/
+    height: 80%;
+    width: 86%;
+    margin: 20px 7%;
+}
+
+.search_page .search_body_row .search_bar_column {
+    box-shadow: 0 0 0 1px  rgba(60, 60, 60, 0.1), 0 5px 10px 0 rgba(163, 163, 163, 0.65);
+    height: auto;
+    width: 30%;
+    margin: 30px 0;
+    float: left;
+}
+
+.search_page .search_body_row .search_bar_column:hover {
+    box-shadow: 0 0 0 1px rgba(19, 19, 19, 0.1), 0 7px 13px 0 rgba(125, 125, 125, 0.65);
+}
+
+.search_page .search_body_row .search_bar_column .search_bar {
+    padding: 30px;
+}
+
+.search_page .search_body_row .search_result_column {
+    /*border: 2px dashed #46552c;*/
+    height: 100%;
+    width: 67%;
+    margin: 0 0 0 30px;
+    float: left;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row {
+    /*border: 2px dashed #46552c;*/
+    height: 300px;
+    width: 100%;
+    margin: 30px 0;
+    float: top;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column{
+    box-shadow: 0 0 0 1px  rgba(60, 60, 60, 0.1), 0 5px 10px 0 rgba(163, 163, 163, 0.65);
+    height: 100%;
+    width: 47.5%;
+    float: left;
+    font-size: 20px;
+}
+
+
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column:hover{
+    box-shadow: 0 0 0 1px rgba(19, 19, 19, 0.1), 0 7px 13px 0 rgba(125, 125, 125, 0.65);
+
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .tour_card_column .tour_card .tour_img{
+    height: 65%;
+}
+
+.search_page .search_body_row .search_result_column .tour_card_row .margin_between_cards{
+    width: 2.5%;
+    border: 2px dashed #ffffff;
+    float: left;
+}
+.search_page .search_body_row .search_bar_column.min_field{
+    margin-right: 5px;
+}
+
+.search_page .search_body_row .search_bar_column .num_field input{
+    float: left;
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 10px
+}
+.field_num_guest input{
+    float: left;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 10px
+}
+.tour_inf {
+    padding: 17px;
+}
+
+
+
+
+
+
+
+/*_________________________________________________________________*/
+
+.radio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 19px;
+    width: 19px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio input:checked ~ .checkmark {
+    background-color: #759097;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.button_search{
+    float: right;
+    background-color: #759097; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.button_search:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}

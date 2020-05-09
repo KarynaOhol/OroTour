@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="OroTour:war exploded2">
+    <output-path>$PROJECT_DIR$/out/artifacts/OroTour_war_exploded2</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="OroTour" />
+          <element id="library" level="application" name="font-awesome" />
+          <element id="library" level="application" name="bootstrap" />
+          <element id="library" level="application" name="jquery-3.4.1" />
+          <element id="library" level="application" name="a076d05399" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.github.goxr3plus:java-google-speech-api:8.0.0" />
+          <element id="library" level="project" name="Maven: com.github.axet:java-flac-encoder:0.3.8" />
+          <element id="library" level="project" name="Maven: org.json:json:20150729" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.19" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="OroTour/web/Web" />
+    </root>
+  </artifact>
+</component>
