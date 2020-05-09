@@ -21,7 +21,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "Home", urlPatterns ={"/home"})
+@WebServlet(name = "Home", urlPatterns ={"/home", "/"})
 public class HomeServlet extends HttpServlet {
     private static final long serialVersionUID = 3770756119040486823L;
 
