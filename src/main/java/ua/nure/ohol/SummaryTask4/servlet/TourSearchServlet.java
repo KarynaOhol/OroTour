@@ -1,6 +1,6 @@
 package ua.nure.ohol.SummaryTask4.servlet;
 
-import javafx.util.Pair;
+import io.vavr.Tuple2;
 import ua.nure.ohol.SummaryTask4.db.beans.*;
 import ua.nure.ohol.SummaryTask4.db.utils.DBUtils;
 import ua.nure.ohol.SummaryTask4.db.utils.MyUtils;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class TourSearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> tourMap = null;
+        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tourMap = null;
         String language = MyUtils.getStoredLanguage(req);
 
         Connection connection = MyUtils.getStoredConnection(req);
@@ -74,7 +74,7 @@ public class TourSearchServlet extends HttpServlet {
             numberOfPeople = "";
         }
 
-        List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> tour = null;
+        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tour = null;
 
         Connection conn = MyUtils.getStoredConnection(req);
         if (tourType.isEmpty() && minPrice.isEmpty() && maxPrice.isEmpty() && numberOfPeople.isEmpty() && hotelType.isEmpty()) {

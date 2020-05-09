@@ -1,6 +1,6 @@
 package ua.nure.ohol.SummaryTask4.db.utils;
 
-import javafx.util.Pair;
+import io.vavr.Tuple2;
 import ua.nure.ohol.SummaryTask4.db.Fields;
 import ua.nure.ohol.SummaryTask4.db.QuerySQL;
 import ua.nure.ohol.SummaryTask4.db.beans.*;
@@ -201,11 +201,11 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourHotInTop
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourHotInTop
             (Connection conn) throws SQLException {
         ResultSet rs = conn.createStatement().executeQuery(QuerySQL.SQL_FIND_All_TOUR_HOT_IN_TOP);
 
-        List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> tourInf = new LinkedList<>();
+        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tourInf = new LinkedList<>();
 
         while (rs.next()) {
             Tour tour = new Tour();
@@ -252,16 +252,16 @@ public class DBUtils {
                 discount = findDiscount(conn, tour.getDiscountID());
             }
 
-            tourInf.add(new Pair<>(new Pair<>(tour, discount), new Pair<>(duration, description)));
+            tourInf.add(new Tuple2<>(new Tuple2<>(tour, discount), new Tuple2<>(duration, description)));
         }
         return tourInf;
 
     }
 
 
-    private static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> convert(Connection conn, ResultSet rs)
+    private static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> convert(Connection conn, ResultSet rs)
             throws SQLException {
-        List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> tourInf = new LinkedList<>();
+        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tourInf = new LinkedList<>();
 
         while (rs.next()) {
             Tour tour = new Tour();
@@ -308,13 +308,13 @@ public class DBUtils {
                 discount = findDiscount(conn, tour.getDiscountID());
             }
 
-            tourInf.add(new Pair<>(new Pair<>(tour, discount), new Pair<>(duration, description)));
+            tourInf.add(new Tuple2<>(new Tuple2<>(tour, discount), new Tuple2<>(duration, description)));
         }
         return tourInf;
     }
 
     //_____________________________________________________________________________________________________
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByType
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByType
     (Connection conn, int typeId) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE);
@@ -325,7 +325,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByClass
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByClass
             (Connection conn, int classId) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_HOTEL_CLASS);
@@ -336,7 +336,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByAvalTikets
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByAvalTikets
             (Connection conn, int num) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_AVALIABLE_TICKETS);
@@ -347,7 +347,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByIntermPice
             (Connection conn, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_PRICE_DIF);
@@ -359,7 +359,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByClass
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByClass
             (Connection conn, int typeId, int classId) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_HOTEL_CLASS);
@@ -371,7 +371,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByClassByAvalTikets
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByClassByAvalTikets
             (Connection conn, int typeId, int classId, int num) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_HOTEL_CLASS_BY_AVALIABLE_TICKETS);
@@ -384,7 +384,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByClassByAvalTiketsByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByClassByAvalTiketsByIntermPice
             (Connection conn, int typeId, int classId, int num, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_HOTEL_CLASS_BY_AVALIABLE_TICKETS_BY_PRICE_DIF);
@@ -399,7 +399,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByClassByAvalTikets
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByClassByAvalTikets
             (Connection conn, int classId, int num) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_HOTEL_CLASS_BY_AVALIABLE_TICKETS);
@@ -412,7 +412,7 @@ public class DBUtils {
     }
 
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByAvalTiketsByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByAvalTiketsByIntermPice
             (Connection conn, int num, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_AVALIABLE_TICKETS_BY_PRICE_DIF);
@@ -425,7 +425,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByAvalTikets
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByAvalTikets
             (Connection conn, int typeId, int num) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_AVALIABLE_TICKETS);
@@ -437,7 +437,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByIntermPice
             (Connection conn, int typeId, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_PRICE_DIF);
@@ -450,7 +450,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByClassByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByClassByIntermPice
             (Connection conn, int classId, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_HOTEL_CLASS_BY_PRICE_DIF);
@@ -463,7 +463,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByClassByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByClassByIntermPice
             (Connection conn, int typeId, int classId, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_HOTEL_CLASS_BY_PRICE_DIF);
@@ -477,7 +477,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByTypeByAvalTiketsByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByTypeByAvalTiketsByIntermPice
             (Connection conn, int typeId, int num, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_TYPE_BY_AVALIABLE_TICKETS_BY_PRICE_DIF);
@@ -491,7 +491,7 @@ public class DBUtils {
 
     }
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourByClassByAvalTiketsByIntermPice
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourByClassByAvalTiketsByIntermPice
             (Connection conn, int classId, int num, int min, int max) throws SQLException {
 
         PreparedStatement pr = conn.prepareStatement(QuerySQL.SQL_FIND_All_TOUR_BY_HOTEL_CLASS_AVALIABLE_TICKETS_BY_PRICE_DIF);
@@ -506,11 +506,11 @@ public class DBUtils {
     }
 //___________________________________
 
-    public static List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> findAllTourHot
+    public static List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> findAllTourHot
             (Connection conn) throws SQLException {
         ResultSet rs = conn.createStatement().executeQuery(QuerySQL.SQL_FIND_All_TOUR_HOT);
 
-        List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> tourInf = new LinkedList<>();
+        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tourInf = new LinkedList<>();
 
         while (rs.next()) {
             Tour tour = new Tour();
@@ -557,7 +557,7 @@ public class DBUtils {
                 discount = findDiscount(conn, tour.getDiscountID());
             }
 
-            tourInf.add(new Pair<>(new Pair<>(tour, discount), new Pair<>(duration, description)));
+            tourInf.add(new Tuple2<>(new Tuple2<>(tour, discount), new Tuple2<>(duration, description)));
         }
         return tourInf;
 

@@ -1,7 +1,7 @@
 package ua.nure.ohol.SummaryTask4.servlet;
 
 
-import javafx.util.Pair;
+import io.vavr.Tuple2;
 
 import ua.nure.ohol.SummaryTask4.db.beans.Description;
 import ua.nure.ohol.SummaryTask4.db.beans.Discount;
@@ -27,7 +27,7 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Pair<Pair<Tour, Discount>, Pair<Duration, Description>>> tourMap = null;
+        List<Tuple2<Tuple2<Tour, Discount>, Tuple2<Duration, Description>>> tourMap = null;
         String language = MyUtils.getStoredLanguage(req);
 
         Connection connection = MyUtils.getStoredConnection(req);
