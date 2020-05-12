@@ -34,7 +34,6 @@ public class TourSearchServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println(tourMap);
 
 
         int size = (int) Math.ceil(tourMap.size() / 2d);
@@ -47,11 +46,6 @@ public class TourSearchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        for (Map.Entry<String, String[]> entry : req.getParameterMap().entrySet()) {
-            System.out.println(entry.getKey());
-            System.out.println(Arrays.toString(entry.getValue()));
-        }
-
 
         String tourType = req.getParameter("tourType");
         String minPrice = req.getParameter("minPrice");
