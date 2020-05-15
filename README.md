@@ -27,3 +27,5 @@ For each tour ordered, a discount is determined with a step determined by the ma
 ### The system administrator owns the rights with the same rights as the manager, and can also:
 * Add / remove tour, change tour information;
 * Block / unblock user.
+
+![fd](url)
