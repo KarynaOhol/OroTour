@@ -29,3 +29,11 @@ For each tour ordered, a discount is determined with a step determined by the ma
 * Block / unblock user.
 
 ![fd](/pictures/Screenshot_28.png)
+![fd](/pictures/Screenshot_1.png)
+![fd](/pictures/Screenshot_2.png)
+![fd](/pictures/Screenshot_3.png)
+![fd](/pictures/Screenshot_4.png)
+![fd](/pictures/Screenshot_5.png)
+![fd](/pictures/Screenshot_6.png)
+![fd](/pictures/Screenshot_7.png)
+![fd](/pictures/Screenshot_8.png)
