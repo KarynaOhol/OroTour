@@ -28,4 +28,4 @@ For each tour ordered, a discount is determined with a step determined by the ma
 * Add / remove tour, change tour information;
 * Block / unblock user.
 
-![fd](url)
+![fd](/pictures/Screenshot_28.png)
